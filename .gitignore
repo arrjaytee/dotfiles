@@ -1,3 +1,4 @@
+.nfs*
 .gitconfig
 *.log
 bin/
@@ -35,8 +36,9 @@ dask-worker-space/
 .bp365-msal-cache
 
 .*/
-# !.config/
-# !.config/**/
+!.config/
+!.config/**/
+.config/pulse
 
 !.github/**
 
@@ -88,3 +90,5 @@ Contacts/
 Cookies/
 Documents/
 scoop/
+
+C:*
