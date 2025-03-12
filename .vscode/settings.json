@@ -3,6 +3,7 @@
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
   "git.ignoreLimitWarning": true,
+  "explorer.excludeGitIgnore": true,
   "workbench.colorCustomizations": {
     "activityBar.activeBorder": "#06b9a5",
     "commandCenter.border": "#15202b99",
