@@ -1,4 +1,6 @@
 ~$*
+.netrc
+_netrc
 pytest.ini
 scratch/
 reports/
