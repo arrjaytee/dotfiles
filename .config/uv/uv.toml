@@ -1,0 +1,10 @@
+native-tls = true
+
+[[index]]
+url = "https://dml.bpweb.bp.com/artifactory/api/pypi/bp-istqa-python-release/simple"
+default = true
+
+[[index][
+url = "https://dml.bpweb.bp.com/artifactory/api/pypi/bp-istqa-python-release/simple"
+
+
