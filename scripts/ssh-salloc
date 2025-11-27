@@ -1,0 +1,13 @@
+#/bin/bash
+
+# salloc is pty-interactive only, but can we use a fake pty? or automate
+# the allocatesd node to return the hsotname and run the $SSH_ORIGINAL_COMMAND via ssh anyway?
+
+
+# salloc is restricted to shells, so cannot run the command...
+# can we allocate a node in the background, get the host and then run via ssh
+echo SSH_ORIGINAL_COMMAND: $SSH_ORIGINAL_COMMAND
+salloc $SSH_ORIGINAL_COMMAND
+
+
+

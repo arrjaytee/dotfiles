@@ -4,12 +4,8 @@
   "python.linting.enabled": true,
   "git.ignoreLimitWarning": true,
   "workbench.colorCustomizations": {
-    "activityBar.activeBorder": "#06b9a5",
-    "commandCenter.border": "#15202b99",
-    "titleBar.activeBackground": "#f9e64f",
-    "titleBar.activeForeground": "#15202b",
-    "titleBar.inactiveBackground": "#f9e64f99",
-    "titleBar.inactiveForeground": "#15202b99"
+    "activityBar.activeBorder": "#06b9a5"
   },
-  "peacock.color": "#f9e64f"
+  "peacock.color": "#f9e64f",
+  "explorer.excludeGitIgnore": true
 }

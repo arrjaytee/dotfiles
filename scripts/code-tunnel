@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH --account tai-lng
+#SBATCH --partition cascadelake
+#SBATCH --time 12:00:00
+#SBATCH --nodes 1
+#SBATCH --job-name code-tunnel
+#SBATCH --output /hpcscratch/%u/log/%x-%j.log
+set -e
+
+cd ${HPCSCRATCHDIR}/workspace
+
+# ensure the latest version
+code --verbose update
+
+# verify we have a token first
+code --verbose tunnel user show
+
+# run the tunnel here as the main sbatch process 
+code --verbose tunnel --accept-server-license-terms
+
+
+
+

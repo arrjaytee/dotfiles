@@ -1,25 +1,5 @@
-channel_alias: https://dml.bpweb.bp.com/artifactory/api/conda
-
-# how to force this to override, and not include the underlying channels
-channels:
-  - https://dml.bpweb.bp.com/artifactory/api/conda/ext-conda-forge
-default_channels: #!final
-  - https://dml.bpweb.bp.com/artifactory/api/conda/ext-conda-forge
-
 solver: libmamba
 envs_dirs:
-  - ${LOCALAPPDATA}\conda\envs
-  - ${LOCALAPPDATA}
-  - /hpc/tstapps/tsquant/pyhpc/conda/${HPCPLAT}/envs
-
-auto_update_conda: false
-aggressive_update_packages: []
-custom_multichannels:
-  conda-forge:
-    - https://dml.bpweb.bp.com/artifactory/api/conda/ext-conda-forge
-
-local_repodata_ttl: 1
-changeps1: false
-auto_stack: 1
-
-allowlist_channels: [] #!final
+  - /hpc/tstapps/tsquant/pyhpc/conda/x86_64/envs
+  - /hpcdata/0066tm/pyhpc/conda/x86_64/envs
+add_pip_as_python_dependency: true

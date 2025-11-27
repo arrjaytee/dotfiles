@@ -1,15 +1,25 @@
 [core]
-	editor = code --wait
-	pager = less -FX
+	excludesFile = ~/.config/git/ignore
+	symlinks = true
+	symlink = true
 
 [diff]
-    tool = default-difftool
-[difftool "default-difftool"]
+    tool = vscode
+	colorMoved = default
+
+[difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
+
+[remote]
+	pushdefault = origin
+
 [merge]
-  tool = code
-[mergetool "code"]
-  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+  	tool = vscode
+  	conflictstyle = diff3
+	defaultToUpstream = true
+
+[mergetool "vscode"]
+  	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 
 [pager]
 	diff = less -FX
@@ -17,6 +27,7 @@
 
 [pull]
 	rebase = true
+	autostash = true
 
 [fetch]
 	prune = true
@@ -25,64 +36,57 @@
 	default = current
 	autoSetupRemote = true
 
-
-# TODO how to keep this aligned if we don't have gh?
-# [credential "https://github.com"]
-#     helper = !gh auth git-credential
-
 [branch]
 	autoSetupRebase = always
 	autoSetupRebase = always
 
-[core]
-	editor = code --wait
-	pager = less -FX
-
-[pager]
-	branch = ""
-
-[merge]
-	conflictstyle = diff3
-	defaultToUpstream = true
-
-[diff]
-	colorMoved = default
-
-[delta]
-	side-by-side = true
-
 [help]
 	autocorrect = immediate
 
+	format = html
 # TODO script setting the desription to the pull request URL so we can go there easily?
 
 # TODO work workin - need to configure the branch to have .rebase = origin/master, . .branch = $1
 #      can this be a default?
 #      How does command line git manage this, but not vscode?
 [alias]
-	rbom = "!git fetch origin master && git rebase origin/master --strategy-option theirs --empty=drop"
 	rbc = "rebase --continue"
 	mr = "!git fetch origin master && git checkout -B master origin/master"
 	wn = "diff --name-only origin/master"
-	sync = "pull --rebase=true --strategy-option=theirs origin master"
-	changed = "diff --name-status origin/master"
-	rbc = "rebase --continue"
+	sync = "!git fetch origin master; git pull --autostash --rebase=true --strategy-option=theirs origin master"
+
+	# we can't automatically know which branch was our parent as it may ave moved on
+	lsync = "rebase --strategy-option=theirs"
+	changed = "!git fetch origin master; git diff --name-status origin/master"
 	reset-master = "!git fetch origin master && git checkout -B master origin/master"
 	bv = "!git fetch --prune; git branch -vvv --sort=committerdate"
 	bd = "branch --delete --force"
-	workon = "!(git fetch origin master && (git checkout -b $1 --track origin/master || git checkout $1))"
-	dom = "!git fetch origin master; git diff origin/master"
-	dunk = "!git diff origin/master | dunk"
+	#workon = "!f() { git fetch origin master && (git checkout -b $1 --track origin/master || git checkout $1); }; f()"
+	workon = "!git fetch origin master; git checkout remotes/origin/master -b"
+	what = "!git pull origin master; git diff --name-only remotes/origin/master"
+	undo = "!git pull origin master; git checkout remotes/origin/master $1"
 	rhh = "reset --hard HEAD"
 	rn = "branch -m"
 	c = "!git commit -m '$1'; echo"
 	ca = "commit --all"
 	caf = "commit --all --no-verify -m"
 	fu = "commit --fixup"
+
 	pollard = "!git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == \"[gone]\" {sub(\"refs/heads/\", \"\", $1); print $1}'); do git branch -v -D $branch; done"
-	# TODO write a better script to query any open PR first?
-	adopr = "!az repos pr create --open"
+	# TODO write a better script to query for the current remote branch and any open PR?
 	purify = "!git checkout master; git reset --hard origin/master; git clean -d --force"
+	qaclone = "!git clone https://dev.azure.com/bp-vsts/QuantAnalytics-git/_git/$1"
+
+	list-checkouts = "!i=0; while [ $? -eq 0 ]; do i=$((i+1)); echo -n "$i. "; git rev-parse --symbolic-full-name @{-$i} 2> /dev/null; done"
+	commit-to-another = "!f() { git branch -b $1; git commit -a -m $2; git checkout -; }; f"
+
+	fudge = "commit --fixup=HEAD"
+	clense = "clean -Xf"
+
+	pr = "!git pull --rebase=true --strategy-option=theirs origin master; git push --force; uv run ~/scripts/git-pr.py $1"
+
+	all = "!f() { for path in **/.git; do echo $(dirname ${path}); git -c color.ui=always -C $(dirname ${path}) $@ | sed 's/^/    /' ; done;  }; f"
+
 
 
 [filter "lfs"]
@@ -91,3 +95,12 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 
+[user]
+	name = Rob Thatcher
+	email = rob.thatcher@bp.com
+[advice]
+	skippedCherryPicks = false
+
+[status]
+	short = true
+	branch = true

@@ -1,0 +1,44 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "HPC",
+            "binaryDir": "/data1/$env{USER}${fileDir}/build/${presetName}",
+            "installDir": "${fileDir}/.venv",
+            "environment": {
+                "CMAKE_BUILD_PARALLEL_LEVEL": "96"
+            },
+            "generator": "Unix Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_NETRC": "REQUIRED"
+            },
+            "condition": {
+                "type": "notEquals",
+                "lhs": "$env{HPCOS}",
+                "rhs": ""
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "HPC",
+            "configurePreset": "HPC",
+            "configuration": "Release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "HPC",
+            "configurePreset": "HPC",
+            "configuration": "Release",
+            "output": {
+                "outputOnFailure": true,
+                "shortProgress": true
+            },
+            "execution": {
+                "stopOnFailure": true
+            }
+        }
+    ]
+}

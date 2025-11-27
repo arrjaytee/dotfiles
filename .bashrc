@@ -1,16 +1,20 @@
 #!/bin/bash
-
-# include the /bin/sh profile settings
-source ${HOME}/.profile
-
-# if running from an interactive session setup starship
-TTY=`tty|awk -F/ '{print $2}'`
-if [ "$TTY" = "dev" ] ; then
-    source <(starship init bash --print-full-init)
-fi
-
-
-
+#------------------------------------------------------------------------------
+# BP HPC .bashrc file
+# => Do not delete, modify, or molest.
+# => All user mods should go in $HOME/.userbashrc
+#------------------------------------------------------------------------------
+# => This is where our setup files live
+#
+SETUP="/hpc/apps/setup"
+#
+#------------------------------------------------------------------------------
+#
+[ -f "$SETUP/profile.bash" ] && . $SETUP/profile.bash
+#
+#------------------------------------------------------------------------------
+#
+[ -f "$HOME/.userbashrc" ] && . $HOME/.userbashrc
 
 
 
