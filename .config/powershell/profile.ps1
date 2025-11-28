@@ -44,3 +44,4 @@ function findfolk {
 
 # this is pretty quick
 Invoke-Expression (& starship init powershell --print-full-init | Out-String)
+# Invoke-Expression "$(direnv hook pwsh)"

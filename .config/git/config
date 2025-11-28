@@ -75,6 +75,10 @@
 	cleanse = "clean -dX"
 	purify = "!git checkout master; git reset --hard origin/master; git clean -d --force"
 	qaclone = "!git clone https://dev.azure.com/bp-vsts/QuantAnalytics-git/_git/$1"
+	
+	pushbr = "!git push; uv run ~/scripts/git-remote-branches.py"
+
+
 
 	list-checkouts = "!i=0; while [ $? -eq 0 ]; do i=$((i+1)); echo -n "$i. "; git rev-parse --symbolic-full-name @{-$i} 2> /dev/null; done"
 	commit-to-another = "!f() { git branch -b $1; git commit -a -m $2; git checkout -; };"

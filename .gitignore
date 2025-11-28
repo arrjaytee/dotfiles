@@ -1,11 +1,19 @@
-*/
-!/scripts/**
-!/.config/
+# hide all top level folders
+/*/
+
+!/scripts/
+
+# only add certain config file to git
+!/.config
+!/.config/git/*
+
+
+
 !/pip/**
 /NTUSER*
 /workspace
 .bp365-msal-cache
 .lesshst
 .python_history
-.netrc
-_netrc
+.netrc*
+_netrc*

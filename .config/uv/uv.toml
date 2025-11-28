@@ -4,7 +4,7 @@ native-tls = true
 url = "https://dml.bpweb.bp.com/artifactory/api/pypi/bp-istqa-python-release/simple"
 default = true
 
-[[index][
+[[index]]
 url = "https://dml.bpweb.bp.com/artifactory/api/pypi/bp-istqa-python-release/simple"
 
 
