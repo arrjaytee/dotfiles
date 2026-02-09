@@ -80,6 +80,8 @@ alias lazygit="/hpcscratch/0066tm/pyhpc/conda/x86_64/envs/lazygit/bin/lazygit"
 alias rmtox="fd --max-depth 2 --type d --unrestricted '\.tox' --exec rm -Rf {}"
 alias rmvenv="fd --max-depth 2 --type d --unrestricted '\.venv' --exec echo rm -Rf {}"
 
+(which eza > /dev/null) && alias ls=eza
+
 # NOTE vscode will use /bin/sh on first access so this sets the environment
 #      for it's commands. terminals will launch bashrc etc.
 
