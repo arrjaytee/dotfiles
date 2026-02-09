@@ -4,7 +4,6 @@ module load conda git rust cmake/4.0.0
 # currently we only have uv here?
 source "/hpc/tstapps/tsquant/bin/env"
 
-
 # move to UK timezone
 export TZ=GB
 
@@ -32,8 +31,6 @@ export VSCODE_AGENT_FOLDER=/data1/${USER}/.vscode-server
 export VSCODE_CLI_USE_FILE_KEYCHAIN=1
 export VSCODE_CLI_DISABLE_KEYCHAIN_ENCRYPT=1
 
-# PAT for experiments with build agents
-export VSTS_AGENT_INPUT_AUTH=pat
 
 # XDG_CACHE_HOME is already set on HPC, but XDG_DATA_HOME is not, and UV will place
 # python interpreters there
@@ -90,6 +87,9 @@ TTY=`tty|awk -F/ '{print $2}'`
 if [ "$TTY" = "dev" ] ; then
     source <(starship init bash --print-full-init)
 fi
+
+# local/secure stuff
+source ~/.env
 
 
 
