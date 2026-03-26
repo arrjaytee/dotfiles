@@ -16,8 +16,8 @@ repo_root_style = "bold fg:green"
 
 [directory.substitutions]
 "/hpcscratch/0066tm/workspace" = "ws:"
-"/hpcscratch/0066tm" = "scratch:"
-"/hpcdata/0066tm" = "data:"
+"/hpcscratch/0066tm" = "~hpcscratch:"
+"/hpcdata/0066tm" = "~hpcdata:"
 
 [python]
 disabled = false

@@ -1,18 +1,15 @@
 /.*
-!.userbashrc
-!.bashrc
-!.bash_profile
-!.condarc
-!/.config/git/
-!/.config/pip/
-!/.config/uv/
-!.config/starship.toml
-!.github/**
-!.vscode/
+!/.userbashrc
+!/.bashrc
+!/.bash_profile
+!/.condarc
+!/.config/
+!/.github/**
+!/.vscode/
 
 
 # capitalized folders are desktop stuff
-[A-Z]*/
+/[A-Z]*/
 
 ondemand/
 workspace

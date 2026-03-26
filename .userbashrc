@@ -46,8 +46,12 @@ export PATH=${HPCSCRATCHDIR}/cargo/bin:${PATH}
 export RUFF_CACHE_DIR=/data1/${USER}/.ruff_cache
 
 # stop cmake from flooding CPU on shared nodes unless we are on the cluster
-export CMAKE_BUILD_PARALLEL_LEVEL=${SLURM_CPUS_ON_NODE:-16}
-export CTEST_PARALLEL_LEVEL=${SLURM_CPUS_ON_NODE:-16}
+
+cpus=${SLURM_CPUS_ON_NODE:-16}
+cpus=$(( $cpus > 32 ? 32 : $cpus ))
+export CMAKE_BUILD_PARALLEL_LEVEL=$cpus
+export CTEST_PARALLEL_LEVEL=$cps
+export PYTEST_XDIST_AUTO_NUM_WORKERS=$cpus
 
 export SALLOC_PARTITION=cascadelake-misc
 export SALLOC_ACCOUNT=tai-lng
@@ -56,10 +60,10 @@ export SALLOC_ACCOUNT=tai-lng
 export SBATCH_ACCOUNT=tai-lng
 export SBATCH_OUTPUT=${HPCSCRATCHDIR}/log/%x-%j-%N.log
 
-export PYTEST_XDIST_AUTO_NUM_WORKERS=${SLURM_CPUS_ON_NODE:-16}
 export TOX_TESTENV_PASSENV="PYTEST_*"
 
 export SQUEUE_FORMAT="%.10i %.16P %32j %8u %8T %10M %16S %16e %16L %.6D %R"
+export SACCT_FORMAT="jobid,user,partition,state,submit,planned,elapsed,end"
 
 alias cdw="cd \$(realpath ~/workspace)"
 alias cdg="cd \$(git rev-parse --show-toplevel)"
@@ -91,7 +95,7 @@ if [ "$TTY" = "dev" ] ; then
 fi
 
 # local/secure stuff
-source ~/.env
+# source ~/.env
 
 
 

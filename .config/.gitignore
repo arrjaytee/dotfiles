@@ -1,0 +1,12 @@
+*
+!.gitignore
+!dask/
+!direnv/
+!gh/
+!git/
+!glances/
+!pip/
+!uv/
+!powershell/
+!starship.toml
+
