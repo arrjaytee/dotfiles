@@ -3,6 +3,7 @@
 /workspace
 /ondemand/
 
+!/.pre-commit-config.yaml
 !/.userbashrc
 !/.bashrc
 !/.bash_profile
