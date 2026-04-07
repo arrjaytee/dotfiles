@@ -1,5 +1,5 @@
-solver: libmamba
-envs_dirs:
-  - /hpc/tstapps/tsquant/pyhpc/conda/x86_64/envs
-  - /hpcdata/0066tm/pyhpc/conda/x86_64/envs
-add_pip_as_python_dependency: true
+env_prompt: ''
+execute_threads: 6
+verify_threads: 6
+report_errors: false
+auto_activate_base: false

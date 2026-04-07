@@ -1,0 +1,7 @@
+~$*
+.nfs
+.env
+.netrc
+_netrc
+scratch/
+reports/

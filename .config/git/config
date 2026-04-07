@@ -1,26 +1,17 @@
 [core]
-# editor = code --wait --new-window
 	excludesFile = ~/.config/git/ignore
 	symlinks = true
 	symlink = true
 
 [diff]
-    #tool = vscode
 	colorMoved = default
-
-# [difftool "vscode"]
-#     cmd = code --wait --diff $LOCAL $REMOTE
 
 [remote]
 	pushdefault = origin
 
 [merge]
-#   	tool = vscode
-   	conflictstyle = diff3
- 	defaultToUpstream = true
-
-# [mergetool "vscode"]
-#   	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+  	conflictstyle = diff3
+	defaultToUpstream = true
 
 [pager]
 	diff = less -FX
@@ -55,9 +46,6 @@
 	mr = "!git fetch origin master && git checkout -B master origin/master"
 	wn = "diff --name-only origin/master"
 	sync = "!git fetch origin master; git pull --autostash --rebase=true --strategy-option=theirs origin master"
-
-	# we can't automatically know which branch was our parent as it may ave moved on
-	lsync = "rebase --strategy-option=theirs"
 	changed = "!git fetch origin master; git diff --name-status origin/master"
 	reset-master = "!git fetch origin master && git checkout -B master origin/master"
 	bv = "!git fetch --prune; git branch -vvv --sort=committerdate"
@@ -75,11 +63,14 @@
 
 	pollard = "!git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == \"[gone]\" {sub(\"refs/heads/\", \"\", $1); print $1}'); do git branch -v -D $branch; done"
 	# TODO write a better script to query for the current remote branch and any open PR?
+	cleanse = "clean -dX"
 	purify = "!git checkout master; git reset --hard origin/master; git clean -d --force"
 	qaclone = "!git clone https://dev.azure.com/bp-vsts/QuantAnalytics-git/_git/$1"
 
+
+
 	list-checkouts = "!i=0; while [ $? -eq 0 ]; do i=$((i+1)); echo -n "$i. "; git rev-parse --symbolic-full-name @{-$i} 2> /dev/null; done"
-	commit-to-another = "!f() { git branch -b $1; git commit -a -m $2; git checkout -; }; f"
+	commit-to-another = "!f() { git branch -b $1; git commit -a -m $2; git checkout -; };"
 
 	fudge = "commit --fixup=HEAD"
 	clense = "clean -Xf"
@@ -101,7 +92,3 @@
 	email = rob.thatcher@bp.com
 [advice]
 	skippedCherryPicks = false
-
-[status]
-	short = true
-	branch = true
