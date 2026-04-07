@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+code tunnel user show
+nohup code tunnel > /data1/${USER}/code-tunnel-${HOSTNAME}.log &
+

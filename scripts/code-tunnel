@@ -1,0 +1,33 @@
+#!/bin/bash
+#SBATCH --job-name code-tunnel-manual
+#SBATCH --account tai-lng
+#SBATCH --partition cascadelake
+#SBATCH --nodes 1
+#SBATCH --time 5-0
+#SBATCH --time-min 0-8
+#SBATCH --output /hpcscratch/%u/log/%x-%j.log
+set -x
+
+SCRIPT=$(realpath -- "${BASH_SOURCE[0]}")
+
+cd ${HPCSCRATCHDIR}/workspace
+
+# ensure the latest version
+code --verbose update || true
+
+# verify we have a token first, fail otherwise
+code --verbose tunnel user show || exit 1
+
+# run the tunnel here as the main sbatch process
+code --verbose tunnel --accept-server-license-terms
+# if it failed then run all over again
+if [ $? -ne 0 ]; then
+    echo "Waiting 10 seconds before restarting ${SCRIPT}"
+    sleep 10
+    exec ${SCRIPT}
+fi
+
+
+
+
+

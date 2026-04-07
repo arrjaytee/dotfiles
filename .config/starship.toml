@@ -1,23 +1,54 @@
 command_timeout = 5000
 scan_timeout = 500
 add_newline = true
-# format = "$status$directory$git_branch$conda$time$username$hostname\n$status$character"
+format = "$hostname$directory$git_branch$git_commit$conda$python$cmake$time$cmd_duration\n$status$character"
+
+[hostname]
+ssh_only = false
+
+[directory]
+truncate_to_repo = false
+truncation_length = 5
+style = "cyan"
+before_repo_root_style = "dimmed white"
+repo_root_style = "bold fg:green"
+
+
+[directory.substitutions]
+"/hpcscratch/0066tm/workspace" = "ws:"
+"/hpcscratch/0066tm" = "~hpcscratch:"
+"/hpcdata/0066tm" = "~hpcdata:"
 
 [python]
-disabled = true
+disabled = false
 
 [rlang]
 disabled = true
 
 [git_status]
-disabled = true
+disabled = false
+
+[git_commit]
+disabled = false
+only_detached = false
 
 [status]
 disabled = false
-format = "[$common_meaning $status]($style) "
+# show only the exit code and colour
+format = "[$status]($style) "
 
+[time]
+disabled = false
+time_format = "%a %Y-%m-%d %H:%M:%S"
 
-# sometimes using unicode chars here seems to break vscode rendering?
-# [character]
-# success_symbol = '[>](green)'
-# error_symbol = '[>](red)'
+[cmake]
+disabled = false
+
+[direnv]
+disabled = true
+
+[cmd_duration]
+disabled = false
+show_milliseconds = false
+format = "(took [$duration]($style))"
+style = "bold blue"

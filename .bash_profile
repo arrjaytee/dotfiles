@@ -1,4 +1,8 @@
-source ${HOME}/.bashrc
+if [[ -v SSH_ORIGINAL_COMMAND ]]; then
+    echo "Running SSH wrapper command, ignoring profile."
+    exit 0
+fi
 
-# one-off check that the cache folder exists
-mkdir --parents $XDG_CACHE_HOME
+if [ "${ENVSET}" != "true" ] ; then
+    [ -f "$HOME/.bashrc" ] && . $HOME/.bashrc
+fi
