@@ -34,4 +34,21 @@ only_detached = false
 
 [status]
 disabled = false
-format = "[$common_meaning $status]($style) "
+# show only the exit code and colour
+format = "[$status]($style) "
+
+[time]
+disabled = false
+time_format = "%a %Y-%m-%d %H:%M:%S"
+
+[cmake]
+disabled = false
+
+[direnv]
+disabled = true
+
+[cmd_duration]
+disabled = false
+show_milliseconds = false
+format = "(took [$duration]($style))"
+style = "bold blue"

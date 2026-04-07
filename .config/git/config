@@ -1,6 +1,6 @@
 [core]
-	editor = code --wait --new-window
-	excludesFile = C:\\Users\\0066tm\\.gitignore-global
+# editor = code --wait --new-window
+	excludesFile = ~/.config/git/ignore
 	symlinks = true
 	symlink = true
 
@@ -75,8 +75,6 @@
 	cleanse = "clean -dX"
 	purify = "!git checkout master; git reset --hard origin/master; git clean -d --force"
 	qaclone = "!git clone https://dev.azure.com/bp-vsts/QuantAnalytics-git/_git/$1"
-	
-	pushbr = "!git push; uv run ~/scripts/git-remote-branches.py"
 
 
 
@@ -88,6 +86,9 @@
 
 	pr = "!git pull --rebase=true --strategy-option=theirs origin master; git push --force; uv run ~/scripts/git-pr.py $1"
 
+	all = "!f() { for path in **/.git; do echo $(dirname ${path}); git -c color.ui=always -C $(dirname ${path}) $@ | sed 's/^/    /' ; done;  }; f"
+
+
 
 [filter "lfs"]
 	process = git-lfs filter-process
@@ -98,9 +99,5 @@
 [user]
 	name = Rob Thatcher
 	email = rob.thatcher@bp.com
-# [http]
-# 	sslBackend = schannel
 [advice]
 	skippedCherryPicks = false
-[http]
-	sslBackend = schannel
