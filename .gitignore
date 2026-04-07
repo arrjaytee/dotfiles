@@ -3,7 +3,7 @@
 !/.bashrc
 !/.bash_profile
 !/.condarc
-!/.config/
+!.config/**
 !/.github/**
 !/.vscode/
 
@@ -12,4 +12,4 @@
 /[A-Z]*/
 
 ondemand/
-workspace
+workspace/
