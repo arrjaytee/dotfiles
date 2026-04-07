@@ -1,3 +1,4 @@
+Write-Host "Boo!"
 $Env:PY_COLORS = "1"
 
 function Get-Process-From-Prefix {
@@ -6,10 +7,6 @@ function Get-Process-From-Prefix {
     )
     Get-Process | Where-Object { ($null -ne $_.Path) -and $_.Path.StartsWith($Prefix) } | Format-Table -Property Id, CommandLine
 }
-
-Set-Alias trash Remove-ItemSafely -Option AllScope
-
-
 function which {
     [CmdletBinding()]
     param([string]$command)
@@ -42,6 +39,35 @@ function findfolk {
 }
 
 
-# this is pretty quick
-Invoke-Expression (& starship init powershell --print-full-init | Out-String)
+function findntid {
+    [CmdletBinding()] param($ntid)
+    (
+        ([adsisearcher]"(samaccountname=$ntid*)").FindAll()
+        | Select-Object -Property @{
+            Label      = "NTID"
+            Expression = { $_.Properties['samaccountname'] }
+        },
+        @{  Label      = "DisplayName"
+            Expression = { $_.Properties['displayName'] }
+        },
+        @{  Label      = "department"
+            Expression = { $_.Properties['department'] }
+        },
+        @{  Label      = "userprincipalname"
+            Expression = { $_.Properties['userprincipalname'] }
+        } | Format-Table
+    )
+}
+
+function adgroups {
+    [CmdletBinding()] param($ntid)
+
+    ([adsisearcher]"(samaccountname=$ntid*)").FindAll() | ForEach-Object {
+        $_.GetDirectoryEntry().memberOf |  ForEach-Object {
+            Write-Host $_.split("=").split(",")[1]
+        }
+    }
+}
+
 # Invoke-Expression "$(direnv hook pwsh)"
+Write-Host "Yah!"

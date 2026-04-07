@@ -2,8 +2,6 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
-  "git.ignoreLimitWarning": true,
-  "explorer.excludeGitIgnore": true,
   "workbench.colorCustomizations": {
     "activityBar.activeBorder": "#06b9a5",
     "commandCenter.border": "#15202b99",
@@ -12,7 +10,5 @@
     "titleBar.inactiveBackground": "#50edf599",
     "titleBar.inactiveForeground": "#15202b99"
   },
-  "peacock.color": "#f9e64f",
-  "explorer.excludeGitIgnore": false,
-  "peacock.remoteColor": "#50edf5"
+  "peacock.color": "#f9e64f"
 }
