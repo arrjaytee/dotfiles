@@ -1,4 +1,7 @@
 /.*
+/workspace
+/ondemand/
+
 !/.userbashrc
 !/.bashrc
 !/.bash_profile
@@ -11,5 +14,3 @@
 # capitalized folders are desktop stuff
 /[A-Z]*/
 
-ondemand/
-workspace/
