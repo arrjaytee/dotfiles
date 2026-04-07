@@ -1,26 +1,17 @@
 [core]
-# editor = code --wait --new-window
 	excludesFile = ~/.config/git/ignore
 	symlinks = true
 	symlink = true
 
 [diff]
-    tool = vscode
 	colorMoved = default
-
-[difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
 
 [remote]
 	pushdefault = origin
 
 [merge]
-  	tool = vscode
   	conflictstyle = diff3
 	defaultToUpstream = true
-
-[mergetool "vscode"]
-  	cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
 
 [pager]
 	diff = less -FX
