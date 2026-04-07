@@ -1,4 +1,3 @@
-Write-Host "Boo!"
 $Env:PY_COLORS = "1"
 
 function Get-Process-From-Prefix {
@@ -70,4 +69,3 @@ function adgroups {
 }
 
 # Invoke-Expression "$(direnv hook pwsh)"
-Write-Host "Yah!"
