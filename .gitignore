@@ -1,3 +1,4 @@
+.nfs*
 /.*
 /workspace
 /ondemand/
@@ -8,9 +9,9 @@
 !/.condarc
 !/.config/**
 !/.github/**
-!/.vscode/
-
+!/.vscode/settings.json
 
 # capitalized folders are desktop stuff
 /[A-Z]*/
+/NTUSER*
 
